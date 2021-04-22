@@ -5,11 +5,11 @@ Ich habe mich entschieden ein Meetingorganisationtool zu entwickeln. In der Appl
 
 ### Personengruppen:
 
-| Gruppe | Beschreibung  |
-| -----|:-------------:|
-| Administrator | Als Administrator kann jeder Meetingraum sowie jeder Mitarbeiter verwaltet werden |
-| Mitarbeiter | Als Mitarbeiter kann ein Meeting erstellt werden, Benutzer können eingeladen werden sowie ein oder mehrere Räume |
-| Meetingraum | Als Meetingraum kann auf jedes Meeting in diesem Raum zugegriffen werden um Daten anzuzeigen |
+| Gruppe | Beschreibung | Bild |
+| -----|:-------------:| ----- |
+| Administrator | Als Administrator kann jeder Meetingraum sowie jeder Mitarbeiter verwaltet werden | ![](https://thispersondoesnotexist.com/image) |
+| Mitarbeiter | Als Mitarbeiter kann ein Meeting erstellt werden, Benutzer können eingeladen werden sowie ein oder mehrere Räume | ![](https://thispersondoesnotexist.com/image) |
+| Meetingraum | Als Meetingraum kann auf jedes Meeting in diesem Raum zugegriffen werden um Daten anzuzeigen | ![](https://www.schwadke.de/wp-content/uploads/2018/11/AdobeStock_36401035-2560x1280.jpeg) |
 
 ### User Stories:
 
@@ -30,4 +30,5 @@ Ich habe mich entschieden ein Meetingorganisationtool zu entwickeln. In der Appl
 
 Programmiersprache: [Java](https://www.java.com/)
 Datenbankanbindung: [Spring](https://spring.io)
+Datenbank: [Postrgres](https://www.postgresql.org/)
 Cach System: [Redis](https://redis.io)
