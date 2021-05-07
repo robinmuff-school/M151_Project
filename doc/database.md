@@ -1,20 +1,15 @@
 # Database
 
 ## Aufbau:
-Meeting < n --- n > Person
+Meeting < n --- n > Akteure
 
-### Meeting
-| Name | 
-| -----|
-| Id |
-| starttime |
-| endtime |
+Ein Meeting kann mehrere Akteure haben und ein  Akteur kann mehrere Meetings haben. 
 
-### Person
-| Name | 
-| -----|
-| Id |
-| username |
-| password |
-| fullname |
-| role |
+## Tables:
+| Meeting |  | Akteur | 
+| ----- | ------ | ------ |
+| Id || Id |
+| starttime || username |
+| endtime || password |
+| Name | | fullname|
+||| role |
