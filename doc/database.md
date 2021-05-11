@@ -13,3 +13,8 @@ Ein Meeting kann mehrere Akteure haben und ein  Akteur kann mehrere Meetings hab
 | endtime || password |
 | Name | | fullname|
 ||| role |
+
+## Fragen:
+-> User kann aus Login Daten genommen werden?
+-> Wie verbindet man SQL Datenbank?
+-> Aufbau
