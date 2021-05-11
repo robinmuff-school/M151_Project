@@ -21,6 +21,20 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+
+	implementation 'org.flywaydb:flyway-core:7.6.0'
+
+	implementation 'com.amazonaws:aws-java-sdk-s3:1.11.981'
+}
+
+def db_url = 'jdbc:postgresql://localhost:5432/m151_meetings'
+def db_user = 'admin'
+def db_password = 'secret'
+
+flyway {
+	url = db_url
+	user = db_user
+	password = db_password
 }
 
 test {
