@@ -40,20 +40,6 @@ services:
     volumes:
       - redis-data:/data
 
-  minio:
-    container_name: minio
-    image: minio/minio:latest
-    environment:
-      - MINIO_ROOT_USER=minio
-      - MINIO_ROOT_PASSWORD=xqwHA0lmTtafqYgvfpsZN8UNTU1n9KJV
-    ports:
-      - 9000:9000
-    command: server /data
-    networks:
-      - meetingmanager
-    volumes:
-      - minio-data:/data
-
 networks:
   meetingmanager:
     driver: bridge
@@ -62,4 +48,3 @@ volumes:
   postgres-db:
   pgadmin-data:
   redis-data:
-  minio-data:

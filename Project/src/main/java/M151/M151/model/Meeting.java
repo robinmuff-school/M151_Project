@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 public class Meeting {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meeting_sequence")
     @SequenceGenerator(allocationSize = 1, name = "meeting_sequence")
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
@@ -24,16 +24,15 @@ public class Meeting {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Invites> invites;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private MeetingRoom meetingRoom;
 
     protected Meeting() {
     }
 
-    public Meeting(LocalDateTime startTime, LocalDateTime endTime, String name, Set<Invites> invites) {
+    public Meeting(LocalDateTime startTime, LocalDateTime endTime, String name) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.name = name;
-        this.invites = invites;
     }
 }

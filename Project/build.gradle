@@ -21,6 +21,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.flywaydb:flyway-core'
+	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
@@ -30,6 +31,16 @@ dependencies {
 }
 
 def db_url = 'jdbc:postgresql://localhost:5432/meetingmanager'
+def db_user = 'admin'
+def db_password = 'secret'
+
+flyway {
+	url = db_url
+	user = db_user
+	password = db_password
+}
+
+def db_url = 'jdbc:postgresql://localhost:5432/meetingmanagers'
 def db_user = 'admin'
 def db_password = 'secret'
 

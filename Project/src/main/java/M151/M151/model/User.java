@@ -27,18 +27,12 @@ public class User {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false)
-    @ColumnTransformer(write = "crypt(!, gen_salt('bf', 8))")
+    @ColumnTransformer(write = "crypt(?, gen_salt('bf', 8))")
     private String password;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserGroup userGroup;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Invites> creator;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Invites> invited;
 
     public String getUsername() {
         return username;
