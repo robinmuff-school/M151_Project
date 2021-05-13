@@ -1,0 +1,3 @@
+# Database
+
+Aus ERD ersichtlich
