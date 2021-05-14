@@ -1,3 +1,69 @@
+-- Table: public.meeting_user
+
+-- DROP TABLE public.meeting_user;
+
+CREATE TABLE public.meeting_user
+(
+    id bigint NOT NULL,
+    firstname character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    lastname character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    user_group character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    username character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT meeting_user_pkey PRIMARY KEY (id),
+    CONSTRAINT uk_91xx7nud7a1au9udbacyla3xj UNIQUE (username)
+)
+
+    TABLESPACE pg_default;
+
+ALTER TABLE public.meeting_user
+    OWNER to admin;
+
+-- Table: public.meeting_room
+
+-- DROP TABLE public.meeting_room;
+
+CREATE TABLE public.meeting_room
+(
+    id bigint NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT meeting_room_pkey PRIMARY KEY (id),
+    CONSTRAINT uk_bikn922oqql7b2am2fvsessoy UNIQUE (name)
+)
+
+    TABLESPACE pg_default;
+
+ALTER TABLE public.meeting_room
+    OWNER to admin;
+
+-- Table: public.meeting
+
+-- DROP TABLE public.meeting;
+
+CREATE TABLE public.meeting
+(
+    id bigint NOT NULL,
+    end_time timestamp without time zone NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    start_time timestamp without time zone NOT NULL,
+    meeting_room_id bigint,
+    CONSTRAINT meeting_pkey PRIMARY KEY (id),
+    CONSTRAINT uk_tmtmoj1wqdj7nre52w9isocui UNIQUE (start_time),
+    CONSTRAINT fkryit2txdgae5ii4ohq6h2v1tw FOREIGN KEY (meeting_room_id)
+        REFERENCES public.meeting_room (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+    TABLESPACE pg_default;
+
+ALTER TABLE public.meeting
+    OWNER to admin;
+
+-- Table: public.invites
+
+-- DROP TABLE public.invites;
+
 CREATE TABLE public.invites
 (
     id bigint NOT NULL,
@@ -21,37 +87,7 @@ CREATE TABLE public.invites
         ON DELETE NO ACTION
 )
 
-CREATE TABLE public.meeting
-(
-    id bigint NOT NULL,
-    end_time timestamp without time zone NOT NULL,
-    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    start_time timestamp without time zone NOT NULL,
-    meeting_room_id bigint,
-    CONSTRAINT meeting_pkey PRIMARY KEY (id),
-    CONSTRAINT uk_tmtmoj1wqdj7nre52w9isocui UNIQUE (start_time),
-    CONSTRAINT fkryit2txdgae5ii4ohq6h2v1tw FOREIGN KEY (meeting_room_id)
-        REFERENCES public.meeting_room (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
+    TABLESPACE pg_default;
 
-CREATE TABLE public.meeting_room
-(
-    id bigint NOT NULL,
-    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT meeting_room_pkey PRIMARY KEY (id),
-    CONSTRAINT uk_bikn922oqql7b2am2fvsessoy UNIQUE (name)
-)
-
-CREATE TABLE public.meeting_user
-(
-    id bigint NOT NULL,
-    firstname character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    lastname character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    user_group character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    username character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT meeting_user_pkey PRIMARY KEY (id),
-    CONSTRAINT uk_91xx7nud7a1au9udbacyla3xj UNIQUE (username)
-)
+ALTER TABLE public.invites
+    OWNER to admin;
