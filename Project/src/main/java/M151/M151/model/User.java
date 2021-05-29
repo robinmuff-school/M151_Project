@@ -9,6 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "meeting_user")
+@NamedQuery(name = "User.checkPassword", query = "SELECT u FROM User u WHERE u.username = :username and password = public.crypt(text(:password), text(password))")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")

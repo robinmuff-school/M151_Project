@@ -1,27 +1,18 @@
--- Table: public.meeting_user
-
--- DROP TABLE public.meeting_user;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 CREATE TABLE public.meeting_user
 (
-    id bigint NOT NULL,
-    firstname character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    lastname character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    id         bigint                                              NOT NULL,
+    firstname  character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    lastname   character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    password   character varying(255) COLLATE pg_catalog."default" NOT NULL,
     user_group character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    username character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    username   character varying(255) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT meeting_user_pkey PRIMARY KEY (id),
     CONSTRAINT uk_91xx7nud7a1au9udbacyla3xj UNIQUE (username)
-)
+);
 
-    TABLESPACE pg_default;
-
-ALTER TABLE public.meeting_user
-    OWNER to admin;
-
--- Table: public.meeting_room
-
--- DROP TABLE public.meeting_room;
+CREATE SEQUENCE user_sequence OWNED BY public.meeting_user.id;
 
 CREATE TABLE public.meeting_room
 (
@@ -29,16 +20,9 @@ CREATE TABLE public.meeting_room
     name character varying(255) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT meeting_room_pkey PRIMARY KEY (id),
     CONSTRAINT uk_bikn922oqql7b2am2fvsessoy UNIQUE (name)
-)
+);
 
-    TABLESPACE pg_default;
-
-ALTER TABLE public.meeting_room
-    OWNER to admin;
-
--- Table: public.meeting
-
--- DROP TABLE public.meeting;
+CREATE SEQUENCE meetingroom_sequence OWNED BY public.meeting_room.id;
 
 CREATE TABLE public.meeting
 (
@@ -53,16 +37,9 @@ CREATE TABLE public.meeting
         REFERENCES public.meeting_room (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
-    TABLESPACE pg_default;
-
-ALTER TABLE public.meeting
-    OWNER to admin;
-
--- Table: public.invites
-
--- DROP TABLE public.invites;
+CREATE SEQUENCE meeting_sequence OWNED BY public.meeting.id;
 
 CREATE TABLE public.invites
 (
@@ -85,9 +62,9 @@ CREATE TABLE public.invites
         REFERENCES public.meeting (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
-    TABLESPACE pg_default;
+CREATE SEQUENCE invites_sequence OWNED BY public.invites.id;
 
-ALTER TABLE public.invites
-    OWNER to admin;
+INSERT INTO public.meeting_user (id, firstname, lastname, password, user_group, username)
+VALUES (1, 'Robin', 'Muff', crypt('secure', gen_salt('bf', 8)), 'Admin', 'robin');
