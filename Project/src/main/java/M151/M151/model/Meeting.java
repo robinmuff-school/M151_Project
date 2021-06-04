@@ -15,26 +15,29 @@ public class Meeting {
     @Column(name = "id", nullable = false, updatable = false)
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = false)
     private LocalDateTime startTime;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = false)
     private LocalDateTime endTime;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private MeetingRoom meetingRoom;
 
     protected Meeting() {
     }
 
-    public Meeting(LocalDateTime startTime, LocalDateTime endTime, String name) {
+    public Meeting(LocalDateTime startTime, LocalDateTime endTime, String name, MeetingRoom meetingRoom) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.name = name;
+        this.meetingRoom = meetingRoom;
     }
+
+    public long getId() { return id; }
 
     public LocalDateTime getStartTime() {
         return startTime;

@@ -1,5 +1,6 @@
 package M151.M151.controller;
 
+import M151.M151.dto.MeetingWithRoom;
 import M151.M151.model.Meeting;
 import M151.M151.service.MeetingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +32,7 @@ public class MeetingController {
     }
 
     @PostMapping("/")
-    public Meeting add(@RequestBody final Meeting meeting) {
-        return meetingService.add(meeting);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable final long id) {
-        meetingService.delete(id);
-    }
-
-    @DeleteMapping("/")
-    public void deleteAll() {
-        meetingService.deleteAll();
+    public Meeting add(@RequestBody final MeetingWithRoom meetingWithRoom) {
+        return meetingService.add(meetingWithRoom);
     }
 }

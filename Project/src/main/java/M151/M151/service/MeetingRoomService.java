@@ -24,23 +24,15 @@ public class MeetingRoomService {
 
     @Transactional(readOnly = true)
     public List<MeetingRoom> getAll() {
-        final Iterable<MeetingRoom> fruits = meetingRoomRepo.findAll();
+        final Iterable<MeetingRoom> meetingRooms = meetingRoomRepo.findAll();
         return StreamSupport
-                .stream(fruits.spliterator(), false)
+                .stream(meetingRooms.spliterator(), false)
                 .collect(Collectors.toList());
     }
 
     @Transactional
     public MeetingRoom add(final MeetingRoom meetingRoom) {
         return meetingRoomRepo.save(meetingRoom);
-    }
-
-    public void delete(final long id) {
-        meetingRoomRepo.deleteById(id);
-    }
-
-    public void deleteAll() {
-        meetingRoomRepo.deleteAll(meetingRoomRepo.findAll());
     }
 
     @Transactional(readOnly = true)

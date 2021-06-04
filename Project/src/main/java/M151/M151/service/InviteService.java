@@ -33,14 +33,6 @@ public class InviteService {
         return inviteRepo.save(invites);
     }
 
-    public void delete(final long id) {
-        inviteRepo.deleteById(id);
-    }
-
-    public void deleteAll() {
-        inviteRepo.deleteAll(inviteRepo.findAll());
-    }
-
     @Transactional(readOnly = true)
     public Optional<Invites> get(final long id) {
         return Optional.ofNullable(inviteRepo.findById(id));

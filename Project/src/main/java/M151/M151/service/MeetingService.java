@@ -1,7 +1,11 @@
 package M151.M151.service;
 
+import M151.M151.dto.MeetingWithRoom;
 import M151.M151.model.Meeting;
+import M151.M151.model.MeetingRoom;
 import M151.M151.repo.MeetingRepo;
+import M151.M151.repo.MeetingRoomRepo;
+import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
@@ -15,31 +19,34 @@ import java.util.stream.StreamSupport;
 @Service
 public class MeetingService {
     private final MeetingRepo meetingRepo;
+    private final MeetingRoomRepo meetingRoomRepo;
 
     @Autowired
-    public MeetingService(final MeetingRepo meetingRepo) {
+    public MeetingService(final MeetingRepo meetingRepo, final MeetingRoomRepo meetingRoomRepo) {
         this.meetingRepo = meetingRepo;
+        this.meetingRoomRepo = meetingRoomRepo;
     }
 
     @Transactional(readOnly = true)
     public List<Meeting> getAll() {
-        final Iterable<Meeting> fruits = meetingRepo.findAll();
+        final Iterable<Meeting> meetings = meetingRepo.findAll();
+        System.out.println(meetings);
         return StreamSupport
-                .stream(fruits.spliterator(), false)
+                .stream(meetings.spliterator(), false)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public Meeting add(final Meeting meeting) {
-        return meetingRepo.save(meeting);
-    }
+    public Meeting add(final MeetingWithRoom meetingWithRoom) {
+        final Optional<MeetingRoom> meetingRoom = Optional.ofNullable(meetingRoomRepo.findById(meetingWithRoom.getMeetingRoom()));
+        System.out.println(meetingRoom.isPresent());
+        if (meetingRoom.isPresent()) {
+            Meeting meeting = new Meeting(meetingWithRoom.getMeeting().getStartTime(), meetingWithRoom.getMeeting().getEndTime(),
+                    meetingWithRoom.getMeeting().getName(), meetingRoom.get());
 
-    public void delete(final long id) {
-        meetingRepo.deleteById(id);
-    }
-
-    public void deleteAll() {
-        meetingRepo.deleteAll(meetingRepo.findAll());
+            return meetingRepo.save(meeting);
+        }
+        return null;
     }
 
     @Transactional(readOnly = true)

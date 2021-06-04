@@ -1,0 +1,1 @@
+ALTER TABLE public.meeting DROP CONSTRAINT uk_tmtmoj1wqdj7nre52w9isocui;

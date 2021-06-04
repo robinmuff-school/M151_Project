@@ -34,14 +34,4 @@ public class MeetingRoomController {
     public MeetingRoom add(@RequestBody final MeetingRoom meetingRoom) {
         return meetingRoomService.add(meetingRoom);
     }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable final long id) {
-        meetingRoomService.delete(id);
-    }
-
-    @DeleteMapping("/")
-    public void deleteAll() {
-        meetingRoomService.deleteAll();
-    }
 }

@@ -35,6 +35,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserGroup userGroup;
 
+    public long getId() {
+        return id;
+    }
+
     public String getUsername() {
         return username;
     }
