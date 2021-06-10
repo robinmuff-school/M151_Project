@@ -1,6 +1,5 @@
 package M151.M151.dto;
 
-import M151.M151.model.MeetingRoom;
 import M151.M151.model.Meeting;
 
 public class MeetingWithRoom {

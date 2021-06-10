@@ -1,6 +1,6 @@
 package M151.M151.controller;
 
-
+import M151.M151.dto.InviteWithUserMeeting;
 import M151.M151.model.Invites;
 import M151.M151.service.InviteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +32,7 @@ public class InviteController {
     }
 
     @PostMapping("/")
-    public Invites add(@RequestBody final Invites invites) {
-        return inviteService.add(invites);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable final long id) {
-        inviteService.delete(id);
-    }
-
-    @DeleteMapping("/")
-    public void deleteAll() {
-        inviteService.deleteAll();
+    public Invites add(@RequestBody final InviteWithUserMeeting inviteWithUserMeeting) {
+        return inviteService.add(inviteWithUserMeeting);
     }
 }

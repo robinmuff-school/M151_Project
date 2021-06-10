@@ -13,14 +13,28 @@ public class Invites {
     @Column(nullable = false, unique = true)
     private MeetingStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User inviter;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User invited;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Meeting meeting;
+
+    protected Invites() {
+    }
+
+    public Invites(MeetingStatus meetingStatus, User inviter, User invited, Meeting meeting) {
+        this.status = meetingStatus;
+        this.inviter = inviter;
+        this.invited = invited;
+        this.meeting = meeting;
+    }
+
+    public long getInviteId() {
+        return id;
+    }
 
     public MeetingStatus getStatus() {
         return status;

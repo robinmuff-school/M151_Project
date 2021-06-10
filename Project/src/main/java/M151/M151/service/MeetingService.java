@@ -5,9 +5,7 @@ import M151.M151.model.Meeting;
 import M151.M151.model.MeetingRoom;
 import M151.M151.repo.MeetingRepo;
 import M151.M151.repo.MeetingRoomRepo;
-import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +28,7 @@ public class MeetingService {
     @Transactional(readOnly = true)
     public List<Meeting> getAll() {
         final Iterable<Meeting> meetings = meetingRepo.findAll();
-        System.out.println(meetings);
+
         return StreamSupport
                 .stream(meetings.spliterator(), false)
                 .collect(Collectors.toList());
@@ -39,7 +37,6 @@ public class MeetingService {
     @Transactional
     public Meeting add(final MeetingWithRoom meetingWithRoom) {
         final Optional<MeetingRoom> meetingRoom = Optional.ofNullable(meetingRoomRepo.findById(meetingWithRoom.getMeetingRoom()));
-        System.out.println(meetingRoom.isPresent());
         if (meetingRoom.isPresent()) {
             Meeting meeting = new Meeting(meetingWithRoom.getMeeting().getStartTime(), meetingWithRoom.getMeeting().getEndTime(),
                     meetingWithRoom.getMeeting().getName(), meetingRoom.get());

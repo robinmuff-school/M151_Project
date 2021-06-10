@@ -1,7 +1,6 @@
 package M151.M151.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class MeetingRoom {

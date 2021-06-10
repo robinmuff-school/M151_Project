@@ -1,11 +1,7 @@
 package M151.M151.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.ColumnTransformer;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 public class Meeting {
