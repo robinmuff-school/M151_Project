@@ -31,4 +31,4 @@ Ich habe mich entschieden ein Meetingorganisationtool zu entwickeln. In der Appl
 Programmiersprache: [Java](https://www.java.com/)
 Datenbankanbindung: [Spring](https://spring.io)
 Datenbank: [Postrgres](https://www.postgresql.org/)
-Cach System: [Redis](https://redis.io)
+Cache System: [Redis](https://redis.io)

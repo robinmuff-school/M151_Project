@@ -1,10 +1,12 @@
 package M151.M151.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.io.Serializable;
 
 @Entity
-public class MeetingRoom {
+public class MeetingRoom implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "meetingroom_sequence")
     @SequenceGenerator(allocationSize = 1, name = "meetingroom_sequence")
