@@ -1,0 +1,1 @@
+ALTER TABLE public.meeting_user add COLUMN deleted boolean NOT NULL default false;

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/meetings")
-@PreAuthorize("hasAuthority('User') or hasAuthority('Admin') or hasAuthority('Meetingroom')")
+@PreAuthorize("hasAuthority('User') or hasAuthority('Admin')")
 public class MeetingController {
     private final MeetingService meetingService;
 
@@ -24,6 +24,11 @@ public class MeetingController {
     @GetMapping("/")
     public List<Meeting> getAll() {
         return meetingService.getAll();
+    }
+
+    @GetMapping("/myMeetings")
+    public List<Meeting> getMyMeetings() {
+        return meetingService.getAllMyMeeting();
     }
 
     @GetMapping("/{id}")

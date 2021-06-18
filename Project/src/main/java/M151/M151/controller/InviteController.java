@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/invites")
-@PreAuthorize("hasAuthority('User') or hasAuthority('Admin') or hasAuthority('Meetingroom')")
+@PreAuthorize("hasAuthority('User') or hasAuthority('Admin')")
 public class InviteController {
     private final InviteService inviteService;
 
@@ -34,5 +34,10 @@ public class InviteController {
     @PostMapping("/")
     public Invites add(@RequestBody final InviteWithUserMeeting inviteWithUserMeeting) {
         return inviteService.add(inviteWithUserMeeting);
+    }
+
+    @PutMapping("/{id}")
+    public Invites edit(@PathVariable final long id, @RequestBody final Invites invites) {
+        return inviteService.update(id, invites).orElse(null);
     }
 }

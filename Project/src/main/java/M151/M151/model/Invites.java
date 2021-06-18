@@ -1,9 +1,12 @@
 package M151.M151.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Invites {
+public class Invites implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invites_sequence")
     @SequenceGenerator(allocationSize = 1, name = "invites_sequence")

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InviteRepo extends CrudRepository<Invites, Long> {
-    Invites findById(long id);
+
 }
